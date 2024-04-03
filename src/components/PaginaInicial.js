@@ -21,15 +21,18 @@ function PaginaInicial() {
             <tr>
                 <td>Eleicao</td>
                 <td>Eleitores</td>
+                <td>Votos</td>
             </tr>
             {electionsAdmin && electionsAdmin.map(e =>
                 <tr>
                     <td><NavLink to={`/elections/${e.uuid}/view`}>{e.name}</NavLink></td>
                     <td>{e.num_voters}</td>
+                    <td>{e.num_cast_votes}</td>
                 </tr>
             )}
         </table>
         </center>
+        <NavLink to={`/elections/administered`}>Ver todas</NavLink>
         </>
     )
 }

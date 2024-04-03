@@ -4,20 +4,22 @@ import { NavLink, useParams } from 'react-router-dom';
 
 function EleicaoQuestoes() {
     let { uuid } = useParams();
-    const [questoes, setQuestoes] = useState();
+    const [obj_param, setObjParam] = useState();
 
     useEffect(() => {
         api.get("/helios/elections/"+uuid+"/questions").then(({data}) => {
-            let userObj = JSON.parse(data.questions_json);
-            setQuestoes(userObj)
+            setObjParam(data)
         })
     },[])
 
     return (
         <>
-        <p>Questões</p>
+        {obj_param ? (<>
+            <p>Eleição: {obj_param.election.name}</p>
+        
+            <p>Questões</p>
 
-        {questoes && questoes.map(q =>
+            {obj_param.questions_json && obj_param.questions_json.map(q =>
             <>
             <p>{q.question}</p>
             <ul>
@@ -29,7 +31,10 @@ function EleicaoQuestoes() {
             </ul>
 
             </>
-        )}
+            )}
+        
+        </>):
+        (<></>)}
 
         <p><NavLink to={`/elections/${uuid}/view`}>Voltar</NavLink></p>
         </>
