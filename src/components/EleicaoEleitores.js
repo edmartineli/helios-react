@@ -16,7 +16,8 @@ function EleicaoEleitores() {
     return (
         <>
 
-        {obj_param ? (<>
+        {obj_param && (
+            <>
             <p>Eleição: {obj_param.election.name}</p>
         
             <p>Eleitores</p>
@@ -42,9 +43,8 @@ function EleicaoEleitores() {
             </table>
             </center>
         
-        </>):
-        (<></>)}
-
+            </>
+        )}
 
         <p><NavLink to={`/elections/${uuid}/view`}>Voltar</NavLink></p>
         </>

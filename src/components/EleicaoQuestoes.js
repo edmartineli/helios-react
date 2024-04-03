@@ -14,27 +14,26 @@ function EleicaoQuestoes() {
 
     return (
         <>
-        {obj_param ? (<>
-            <p>Eleição: {obj_param.election.name}</p>
+        {obj_param && (
+            <>
+            <p>Eleição:{obj_param.election.name}</p>
         
             <p>Questões</p>
 
             {obj_param.questions_json && obj_param.questions_json.map(q =>
-            <>
-            <p>{q.question}</p>
-            <ul>
-            {q.answers && q.answers.map(q =>
                 <>
-                <li>{q}</li>
+                <p>{q.question}</p>
+                <ul>
+                {q.answers && q.answers.map(q =>
+                    <>
+                    <li>{q}</li>
+                    </>
+                )}
+                </ul>
                 </>
             )}
-            </ul>
-
             </>
-            )}
-        
-        </>):
-        (<></>)}
+        )}
 
         <p><NavLink to={`/elections/${uuid}/view`}>Voltar</NavLink></p>
         </>

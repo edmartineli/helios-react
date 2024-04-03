@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import api from "../services/api"
-import Eleicao from "./Eleicao";
 import { NavLink } from 'react-router-dom';
 
 function PaginaInicial() {
@@ -32,7 +31,7 @@ function PaginaInicial() {
             )}
         </table>
         </center>
-        <NavLink to={`/elections/administered`}>Ver todas</NavLink>
+        <NavLink to="/elections/administered">Ver todas</NavLink>
         </>
     )
 }

@@ -81,7 +81,7 @@ function Eleicao() {
 
     return (
         <>
-        {obj_param ? (
+        {obj_param && (
             <>
             <center>
             <table border="1">
@@ -110,11 +110,8 @@ function Eleicao() {
                 </>
             )}
             </>
-        ) : (
-            <>
-            <p>Votação não encontrada</p>
-            </>
         )}
+        
         <p><NavLink to="/">Voltar</NavLink></p>
         </>
     )

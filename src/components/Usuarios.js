@@ -2,12 +2,12 @@ import React, {useEffect, useState} from "react"
 import api from "../services/api"
 import { NavLink, useParams } from 'react-router-dom';
 
-function EleicoesAdministradas() {
+function Usuarios() {
     const [obj_param, setObjParam] = useState();
 
     useEffect(() => {
-        api.get("/helios/elections/administered").then(({data}) => {
-            //console.log(data)
+        api.get("/auth/user/list").then(({data}) => {
+            console.log(data)
             setObjParam(data)
         })
     },[])
@@ -16,19 +16,20 @@ function EleicoesAdministradas() {
         <>
         {obj_param && (
             <>
-            <p>Eleições que você administra</p>
+            <p>Usuários</p>
             <center>
             <table border="1">
                 <tr>
-                    <td>Eleicao</td>
-                    <td>Eleitores</td>
-                    <td>Votos</td>
+                    <td>Tipo</td>
+                    <td>Usuário</td>
+                    <td>Nome</td>
+                    <td>Email</td>
                 </tr>
-                {obj_param.elections && obj_param.elections.map(e =>
+                {obj_param.users && obj_param.users.map(u =>
                     <tr>
-                        <td>{e.name}</td>
-                        <td>{e.num_voters}</td>
-                        <td>{e.num_cast_votes}</td>
+                        <td>{u.user_type}</td>
+                        <td>{u.user_id}</td>
+                        <td>{u.name}</td>
                     </tr>
                 )}
             </table>
@@ -41,4 +42,4 @@ function EleicoesAdministradas() {
     )
 }
 
-export default EleicoesAdministradas
+export default Usuarios
