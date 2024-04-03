@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginForm from './components/LoginForm';
+import PaginaInicial from './components/PaginaInicial';
+import Eleicao from './components/Eleicao';
+import EleicaoEleitores from './components/EleicaoEleitores';
+import EleicaoQuestoes from './components/EleicaoQuestoes';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Helios Voting</h1>
+
+      <LoginForm setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
+
+      {loggedIn ? (
+        <>
+        <hr/>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<PaginaInicial/>} exact/>
+            <Route path="/elections/:uuid/view" element={<Eleicao/>}/>
+            <Route path="/elections/:uuid/voters/view" element={<EleicaoEleitores/>}/>
+            <Route path="/elections/:uuid/questions" element={<EleicaoQuestoes/>}/>
+          </Routes>
+        </BrowserRouter>
+        <hr/>
+        </>
+      ) : (
+        <>
+          Não Autenticado    
+        </>
+      )}
+
     </div>
   );
 }
