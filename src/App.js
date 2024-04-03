@@ -8,6 +8,7 @@ import EleicaoEleitores from './components/EleicaoEleitores';
 import EleicaoQuestoes from './components/EleicaoQuestoes';
 import EleicoesAdministradas from './components/EleicoesAdministradas';
 import Usuarios from './components/Usuarios';
+import Stats from './components/Stats';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -34,6 +35,7 @@ function App() {
             <Route path="/elections/:uuid/voters/view" element={<EleicaoEleitores/>}/>
             <Route path="/elections/:uuid/questions" element={<EleicaoQuestoes/>}/>
             <Route path="/elections/administered" element={<EleicoesAdministradas/>}/>
+            <Route path="/stats" element={<Stats/>}/>
             <Route path="/user/list" element={<Usuarios/>}/>
           </Routes>
         </BrowserRouter>
